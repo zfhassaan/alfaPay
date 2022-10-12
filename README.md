@@ -16,7 +16,7 @@ composer require zfhassaan/alfapay-php
 ## Set .env configurations
 You can get these values from Bank Alfalah Merchant portal
 ```php
-ALFAPAY_URL=https:
+ALFAPAY_URL=
 ALFAPAY_MODE=sandbox
 ALFAPAY_CHANNEL_ID=
 ALFAPAY_MERCHANT_ID=
