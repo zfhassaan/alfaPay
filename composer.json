@@ -1,0 +1,29 @@
+{
+    "name": "zfhassaan/bank/alfa",
+    "description": "Laravel 9 package for bank alfalah",
+    "type": "library",
+    "require": {
+        "php": "^8.0.2"
+    },
+    "require-dev": {},
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "zfhassaan\\AlfaPay\\": "src/"
+        }
+    },
+    "authors": [{
+        "name": "Hassaan Ali",
+        "email": "zfhassaan@gmail.com"
+    }],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "zfhassaan\\AlfaPay\\AlfapayServiceProvider"
+            ],
+            "aliases": {
+                "alfaPay": "zfhassaan\\AlfaPay\\AlfapayFacade"
+            }
+        }
+    }
+}
