@@ -67,10 +67,58 @@ public function process(){
      $alfa->setEmail($request->Email);
      $alfa->setCountryCode('164'); // Pakistan = 164
      $alfa->sendTransactionRequest();
-     return $alfa->sendTransactionRequest();
+    //  return $alfa->sendTransactionRequest();
+    $transactionResponse = $alfa->sendTransactionRequest();
+    if($transactionResponse != null && $transactionResponse->success = 'true') {
+        $TransactionReferenceNumber = $transactionResponse->TransactionReferenceNumber;
+        $TransactionTypeId = $transactionResponse->TransactionTypeId;
+        $HashKey = $transactionResponse->HashKey;
+        $AuthToken = $request->AuthToken;
+        // Can return it in a view to send next request for OTP
+        // It depends on the developer how to utilize it. 
+    }
+    abort(404,$transactionResponse);
 }
 ```
 
+OTP Request ( Or Proceed to Payment )
+
+```php 
+public function otp(Request $request) {
+    $this->validate($request,[
+        'OTP' => 'required',
+        'HashKey' => 'required',
+        'TransactionTypeId'=>'required', 
+        'TransactionReferenceNumber'=>'required',
+    ]);
+
+    $alfa = new AlfaPay();
+    $alfa->setCurrency('PKR');
+    $alfa->setTransactionReferenceNumber($request->TransactionReferenceNumber);
+    $alfa->setTransactionType($request->TransactionTypeId);
+    $alfa->setHashKey($request->HashKey);
+    $alfa->setSMSOTP($request->OTP);
+    $alfa->setAuthToken($request->AuthToken);
+
+    $processResponse = $alfa->processTransaction();
+    if($processResponse != null && property_exists($processResposne, 'response_code')) 
+    {
+        try{
+            $currency = $alfa->getCurrency('PKR');
+            $paidAmount = $processResponse->transaction_amount;
+            $apiResponse = serialize($processResponse);
+            session()->flash('success', 'Payment Success');
+            // Return with currency, paid Amount , apiResponse, ProcessResponse or 
+            // compact it in views to show Thank you ( Order Confirmation page )
+        } catch(\Exception $e) {
+            abort(403, 'Error: ', $e->getMessage());
+        }
+    } else {
+        abort(403, 'Error: '.$processResponse->ErrorMessage.'. Transaction OTP not completed');
+    }
+}
+
+```
 
 ### Testing
 
