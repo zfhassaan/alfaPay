@@ -10,7 +10,7 @@ This is Bank Alfalah payment gateway package to pay using Alfa Wallet, Bank Acco
 You can install the package via composer:
 
 ```bash
-composer require zfhassaan/alfapay-php
+composer require zfhassaan/alfa
 ```
 
 ## Set .env configurations
@@ -35,13 +35,13 @@ Add These Files in `app/config.php`
         /*
          * Package Service Providers...
          */
-        zfhassaan\Alfapay\AlfapayServiceProvider::class,
+        \zfhassaan\Alfapay\AlfapayServiceProvider::class,
 ```
 and also add Alias in `app/config.php`
 
 ```php 
     'aliases' => Facade::defaultAliases()->merge([
-        'Alfapay' => zfhassaan\Alfapay\AlfapayFacade::class,
+        'Alfapay' => \zfhassaan\Alfapay\AlfapayFacade::class,
     ])->toArray(),
 
 ```
@@ -51,7 +51,7 @@ and then can post request the amount information along with some validation.
 Please refer to YouTube video for full understanding.
 ```php
 
-use zfhassaan\Alfapay\Alfapay;
+use zfhassaan\Alfapay\AlfaPay;
 
 public function get_token(){
     // generate random transaction/order number
