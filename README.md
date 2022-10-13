@@ -1,7 +1,7 @@
 # AlfaPay
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/zfhassaan/alfapay.svg?style=flat-square)](https://packagist.org/packages/zfhassaan/alfa-pay)
-[![Total Downloads](https://img.shields.io/packagist/dt/zfhassaan/alfapay.svg?style=flat-square)](https://packagist.org/packages/zfhassaan/alfa-pay)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/zfhassaan/alfapay.svg?style=flat-square)](https://packagist.org/packages/zfhassaan/alfa)
+[![Total Downloads](https://img.shields.io/packagist/dt/zfhassaan/alfapay.svg?style=flat-square)](https://packagist.org/packages/zfhassaan/alfa)
 
 This is Bank Alfalah payment gateway package to pay using Alfa Wallet, Bank Account Number or Credit Card (Credit Card not yet implemented). You can use this package with Laravel or any PHP framework via composer.
 
