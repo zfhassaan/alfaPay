@@ -28,12 +28,31 @@ ALFAPAY_MERCHANT_HASH=
 ALFAPAY_KEY_1=
 ALFAPAY_KEY_2=
 ```
+## Configuration
+Add These Files in `app/config.php` 
 
+```php 
+        /*
+         * Package Service Providers...
+         */
+        zfhassaan\Alfapay\AlfapayServiceProvider::class,
+```
+and also add Alias in `app/config.php`
+
+```php 
+    'aliases' => Facade::defaultAliases()->merge([
+        'Alfapay' => zfhassaan\Alfapay\AlfapayFacade::class,
+    ])->toArray(),
+
+```
 ## Usage
 First you've to get auth token by providing your unique transaction number or order number
 and then can post request the amount information along with some validation.
 Please refer to YouTube video for full understanding.
 ```php
+
+use zfhassaan\Alfapay\Alfapay;
+
 public function get_token(){
     // generate random transaction/order number
     $transNum = rand(0,17866120);
